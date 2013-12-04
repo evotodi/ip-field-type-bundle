@@ -1,0 +1,23 @@
+{
+    "name": "vx/ip-field-bundle",
+    "type": "symfony-bundle",
+    "description": "Ip form fiel for symfony 2 forms",
+    "keywords": ["ip", "form", "fiel", "symfony", "symfony bundle", "bundle", "symfony-2"],
+    "homepage": "https://github.com/Vixys/VxIpFieldTypeBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sébastien Marichal",
+            "email": "sebmarichal@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "2.*"
+    },
+    "autoload": {
+        "psr-0": { "Vx\\IpFieldTypeBundle": "" }
+    },
+    "target-dir": "Vx/IpFieldTypeBundle",
+    "minimum-stability": "dev"
+}
