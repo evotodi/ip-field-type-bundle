@@ -1,0 +1,86 @@
+{% block ipfield_widget %}
+	{% spaceless %}
+		{% if id is not defined %}
+			{% set id = form.vars.id %}
+		{% endif %}
+		{% set id_func = id|replace({'-': "_", '*': '_', '/': '_', '+': '_'}) %}
+		<div id="div_field_{{ id }}">
+			<center>
+				{% for i in 0..ip_conf['group'] - 1%}
+					{% if i != 0 %}{{ ip_conf['sep'] }}{% endif %}
+					<input id="{{ id ~ i }}" oninput="ip_check_input_{{ id_func }}(this, {{ i }})" onchange="ip_valid_input_{{ id_func }}(this.value, {{ i }})" maxlength="{{ ip_conf['group_length'] }}" style="width: {{ ip_conf['group_length'] * 10 }}px; padding: none; margin: none; border: 0; text-align: center;" autocomplete="off" {% if ip_conf['version'] == 4 %}required{% endif %}></input>
+				{% endfor %}
+				
+				<script type="text/javascript">
+					window.onload = function() {
+						
+						var input_tmp = document.createElement("input");
+						{% if class is defined %}
+							input_tmp.className = "{{ class }}";
+						{% endif %}
+
+						var div_field = document.getElementById("div_field_{{ id }}");
+						div_field.appendChild(input_tmp);
+						div_field.style.cssText = window.getComputedStyle(input_tmp).cssText;
+						div_field.removeChild(input_tmp);
+						var width = parseInt(div_field.style.getPropertyCSSValue("padding-right").cssText) + parseInt(div_field.style.getPropertyCSSValue("padding-left").cssText)
+						width += parseInt(document.getElementById("{{ id }}0").style.width) * {{ ip_conf['group'] }} + {{ (ip_conf['group'] - 1) * 13 }};
+						div_field.style.width = width.toString() + "px";
+
+						var hidden = document.getElementById("{{ id }}");
+						{% for i in 0..ip_conf['group'] - 1%}
+						var field{{ i }} = document.getElementById("{{ id ~ i }}");
+						{% endfor %}
+
+						var split_ip = hidden.value.split("{{ ip_conf['sep'] }}");
+
+						if (split_ip.length != {{ ip_conf['group'] }})
+						{
+							hidden.value = "";								
+							for (var i = 0; i < {{ ip_conf['group'] - 1 }}; i++)
+							{
+								hidden.value += "{{ ip_conf['sep'] }}";								
+							};
+							return ;
+						}
+
+						{% for i in 0..ip_conf['group'] - 1%}
+						field{{ i }}.value = split_ip[{{ i }}];
+						{% endfor %}
+					}
+
+					function ip_check_input_{{ id_func }} (input, idx) {
+
+						if (input.length == 0)
+							return ;
+
+						var value = parseInt(input.value, {{ ip_conf['base'] }});
+
+						if (isNaN(value))
+							value = "";
+
+						if (value < 0)
+							value = 0;
+						else if (value > {{ ip_conf['max_value'] }})
+						{
+							value = {{ ip_conf['max_value'] }};							
+							ip_valid_input_{{ id_func }}(value, idx);
+						}
+						input.value = value.toString({{ ip_conf['base'] }});
+					}
+
+					function ip_valid_input_{{ id_func }} (digit, idx) {
+						var hidden = document.getElementById("{{ id }}");
+
+						var split_ip = hidden.value.split("{{ ip_conf['sep'] }}");
+
+						split_ip[idx] = digit.toString({{ ip_conf['base'] }});
+
+						hidden.value = split_ip.join("{{ ip_conf['sep'] }}");
+					}
+				</script>
+			    {{ block('hidden_widget') }}
+			</center>
+		</div>
+	{% endspaceless %}
+{% endblock %}

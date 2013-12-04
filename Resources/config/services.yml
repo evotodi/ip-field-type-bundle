@@ -1,0 +1,8 @@
+parameters:
+    vx_ip_field.form.class: Vx\IpFieldTypeBundle\Type\IpType
+
+services:
+    vx.ipfield.form.type:
+        class: %vx_ip_field.form.class%
+        tags:
+            - { name: form.type, alias: ipfield }
