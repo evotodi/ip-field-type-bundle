@@ -40,7 +40,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Vx\TestIpFieldBundle\VxTestIpFieldBundle(),
+        new Vx\IpFieldTypeBundle\VxIpFieldTypeBundle(),
     );
 }
 ```
