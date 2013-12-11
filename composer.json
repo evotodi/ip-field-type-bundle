@@ -2,7 +2,7 @@
     "name": "vx/ip-field-bundle",
     "type": "symfony-bundle",
     "description": "Ip form fiel for symfony 2 forms",
-    "keywords": ["ip", "form", "fiel", "symfony", "symfony bundle", "bundle", "symfony-2"],
+    "keywords": ["ip", "form", "field", "type", "symfony", "symfony bundle", "bundle", "symfony-2"],
     "homepage": "https://github.com/Vixys/VxIpFieldTypeBundle",
     "license": "MIT",
     "authors": [
