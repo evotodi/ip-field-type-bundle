@@ -57,13 +57,17 @@ $form = $this->createFormBuilder()
 	->add('send', 'submit')->getForm();
 ```
 
-You can specify the ip version (`ipv4` or `ipv6`) :
+You can specify the ip version (`ipv4`, `ipv6` or `mac`) :
 ``` php
 	->add('ip', 'ipfield', array('version' => 'ipv4'))
 ```
 
 ``` php
 	->add('ip', 'ipfield', array('version' => 'ipv6'))
+```
+
+``` php
+	->add('ip', 'ipfield', array('version' => 'mac'))
 ```
 
 ### View
@@ -75,7 +79,7 @@ You can specify the ip version (`ipv4` or `ipv6`) :
 	<div class="control-group">
 		<label class="control-label" for="ip">IP</label>
 		<div class="controls">
-			{{ form_widget(form.ip, { 'my_ip_field', 'class': 'form-control' }) }}
+			{{ form_widget(form.ip, { 'id': 'my_ip_field', 'class': 'form-control' }) }}
 		</div>
 	</div>
 	{{ form_rest(form) }}

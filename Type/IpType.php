@@ -39,15 +39,24 @@ class IpType extends AbstractType
 					    				   'sep' => '.',
 					    				   'base' => 10, )
 	        ));
-	    else if ($options['version'] == 'ipv6')
-    		$view->vars = array_replace($view->vars, array(
-	            'ip_conf'          => array('version' => 6,
-										   'max_value' => 0xffff,
-										   'group' => 8,
-										   'group_length' => 4,
-										   'sep' => ':',
-										   'base' => 16, )
-	        ));
+        else if ($options['version'] == 'ipv6')
+            $view->vars = array_replace($view->vars, array(
+                'ip_conf'          => array('version' => 6,
+                                           'max_value' => 0xffff,
+                                           'group' => 8,
+                                           'group_length' => 2,
+                                           'sep' => ':',
+                                           'base' => 16, )
+            ));
+        else if ($options['version'] == 'mac')
+            $view->vars = array_replace($view->vars, array(
+                'ip_conf'          => array('version' => 'mac',
+                                           'max_value' => 0xff,
+                                           'group' => 8,
+                                           'group_length' => 2,
+                                           'sep' => ':',
+                                           'base' => 16, )
+            ));
     	else
     		$view->vars = array_replace($view->vars, array(
 	            'ip_conf'          => $options['version']
