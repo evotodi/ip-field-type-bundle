@@ -19,8 +19,6 @@
 					if (split_val.length != {{ ip_conf['group'] }})
 						return false;
 
-					console.log(split_val);
-
 					for (var i = split_val.length - 1; i >= 0; i--) {
 						var num = parseInt(split_val[i], {{ ip_conf['base'] }});
 
@@ -50,10 +48,6 @@
 							var field{{ i }} = document.getElementById("{{ id ~ i }}");
 							field{{ i }}.value = split_val[{{ i }}];
 						{% endfor %}
-					}
-					else
-					{
-						alert('no valid');
 					}
 
 					return false;
