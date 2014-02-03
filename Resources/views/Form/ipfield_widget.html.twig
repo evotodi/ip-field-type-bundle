@@ -12,6 +12,53 @@
 			
 			<script type="text/javascript">
 
+				function isValid(ipaddress) 
+				{
+					var split_val = ipaddress.split("{{ ip_conf['sep'] }}");
+
+					if (split_val.length != {{ ip_conf['group'] }})
+						return false;
+
+					console.log(split_val);
+
+					for (var i = split_val.length - 1; i >= 0; i--) {
+						var num = parseInt(split_val[i], {{ ip_conf['base'] }});
+
+						if (isNaN(num))
+							return false;
+						if (num < 0 || num > {{ ip_conf['max_value'] }})
+							return false;
+					};
+
+					return true;
+				}
+
+				function onPaste(e)
+				{
+					var pastedText = undefined;
+					if (window.clipboardData && window.clipboardData.getData) { // IE
+						pastedText = window.clipboardData.getData('Text');
+					} else if (e.clipboardData && e.clipboardData.getData) {
+						pastedText = e.clipboardData.getData('text/plain');
+					}
+
+					if (isValid(pastedText))
+					{
+						var split_val = pastedText.split("{{ ip_conf['sep'] }}");
+
+						{% for i in 0..ip_conf['group'] - 1%}
+							var field{{ i }} = document.getElementById("{{ id ~ i }}");
+							field{{ i }}.value = split_val[{{ i }}];
+						{% endfor %}
+					}
+					else
+					{
+						alert('no valid');
+					}
+
+					return false;
+				}
+
 				function init() {
 					
 					var input_tmp = document.createElement("input");
@@ -25,11 +72,12 @@
 					div_field.style.cssText = window.getComputedStyle(input_tmp).cssText;
 					div_field.removeChild(input_tmp);
 					var width = parseInt(div_field.style.getPropertyCSSValue("padding-right").cssText) + parseInt(div_field.style.getPropertyCSSValue("padding-left").cssText)
-					width += parseInt(document.getElementById("{{ id }}0").style.width) * {{ ip_conf['group'] }} + {{ (ip_conf['group'] - 1) * 13 }};
+					width += parseInt(document.getElementById("{{ id }}0").style.width) * {{ ip_conf['group'] }} + {{ (ip_conf['group'] - 1) * 14 }};
 					div_field.style.width = width.toString() + "px";
 
 					{% for i in 0..ip_conf['group'] - 1%}
 					var field{{ i }} = document.getElementById("{{ id ~ i }}");
+					field{{ i }}.onpaste = onPaste;
 					{% endfor %}
 
 					var split_ip = hidden.value.split("{{ ip_conf['sep'] }}");

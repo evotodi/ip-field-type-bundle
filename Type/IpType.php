@@ -52,7 +52,7 @@ class IpType extends AbstractType
             $view->vars = array_replace($view->vars, array(
                 'ip_conf'          => array('version' => 'mac',
                                            'max_value' => 0xff,
-                                           'group' => 8,
+                                           'group' => 6,
                                            'group_length' => 2,
                                            'sep' => ':',
                                            'base' => 16, )
