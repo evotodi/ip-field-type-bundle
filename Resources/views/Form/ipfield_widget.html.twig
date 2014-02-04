@@ -49,8 +49,28 @@
 							field{{ i }}.value = split_val[{{ i }}];
 						{% endfor %}
 					}
+					else
+					{
+						alert('no valid');
+					}
 
 					return false;
+				}
+
+				function onCopy(e)
+				{
+					var ip = document.getElementById("{{ id }}").value;
+
+					if (isValid(ip))
+					{
+						if (window.clipboardData && window.clipboardData.setData) { // IE
+							window.clipboardData.setData('Text', ip);
+						} else if (e.clipboardData && e.clipboardData.setData) {
+							e.clipboardData.setData('text/plain', ip);
+						}
+						return false;
+					}
+					return true;
 				}
 
 				function init() {
@@ -72,6 +92,7 @@
 					{% for i in 0..ip_conf['group'] - 1%}
 					var field{{ i }} = document.getElementById("{{ id ~ i }}");
 					field{{ i }}.onpaste = onPaste;
+					field{{ i }}.oncopy = onCopy;
 					{% endfor %}
 
 					var split_ip = hidden.value.split("{{ ip_conf['sep'] }}");
@@ -101,6 +122,9 @@
 					if (input.length == 0)
 						return ;
 
+					if (input.value.slice(-1) == "{{ ip_conf['sep'] }}"  && idx < 3)
+						document.getElementById("{{ id }}" + (idx + 1)).focus();
+
 					var value = parseInt(input.value, {{ ip_conf['base'] }});
 
 					if (isNaN(value))
@@ -114,6 +138,11 @@
 						ip_valid_input_{{ id_func }}(value, idx);
 					}
 					input.value = value.toString({{ ip_conf['base'] }});
+
+					if (input.value.length == 3 && idx < 3)
+					{
+						document.getElementById("{{ id }}" + (idx + 1)).focus();
+					}
 				}
 
 				function ip_valid_input_{{ id_func }} (digit, idx) {
