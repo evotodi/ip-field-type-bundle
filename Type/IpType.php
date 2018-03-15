@@ -10,15 +10,25 @@ use Symfony\Component\Form\FormInterface;
 
 class IpType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function setDefaultOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'version' => 'ipv4',
-        ));
-    }
+	public function configureOptions(OptionsResolver $resolver)
+	{
+		parent::configureOptions($resolver);
+		$resolver->setDefined(array('version'));
+		$resolver->setDefaults(array(
+			'version' => 'ipv4',
+		));
+	}
+
+//	/**
+//     * {@inheritdoc}
+//     */
+//    public function setDefaultOptions(OptionsResolver $resolver)
+//    {
+//    	$resolver->setDefined(['version']);
+//        $resolver->setDefaults(array(
+//            'version' => 'ipv4',
+//        ));
+//    }
 
     public function getParent()
     {
