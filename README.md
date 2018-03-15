@@ -6,7 +6,7 @@ Provide an ip field for symfony 3 forms.
 Requirements
 ------------
 
-* Symfony2.*
+* Symfony 3.*
 
 ## Installation
 
@@ -40,7 +40,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new ev\IpFieldTypeBundle\EvIpFieldTypeBundle(),
+        new Ev\IpFieldTypeBundle\EvIpFieldTypeBundle(),
     );
 }
 ```
