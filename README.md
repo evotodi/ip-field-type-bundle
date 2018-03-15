@@ -1,7 +1,7 @@
-VxIpFieldTypeBundle
+EvIpFieldTypeBundle
 ===================
 
-Provide an ip field for symfony forms.
+Provide an ip field for symfony 3 forms.
 
 Requirements
 ------------
@@ -12,12 +12,12 @@ Requirements
 
 ### Composer
 
-Add VxJsUploadBundle in your composer.json:
+Add EvJsUploadBundle in your composer.json:
 
 ``` json
 {
     "require": {
-        "vx/ip-field-bundle": "dev-master"
+        "ev/ip-field-bundle": "dev-master"
     }
 }
 ```
@@ -25,7 +25,7 @@ Add VxJsUploadBundle in your composer.json:
 Now you can download the bundle with composer:
 
 ``` bash
-$ php composer.phar update vx/ip-field-bundle
+$ php composer.phar update ev/ip-field-bundle
 ```
 
 ### AppKernel
@@ -40,7 +40,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Vx\IpFieldTypeBundle\VxIpFieldTypeBundle(),
+        new ev\IpFieldTypeBundle\EvIpFieldTypeBundle(),
     );
 }
 ```

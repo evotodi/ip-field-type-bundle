@@ -1,6 +1,6 @@
 <?php 
 
-namespace Vx\IpFieldTypeBundle\Type;
+namespace Ev\IpFieldTypeBundle\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

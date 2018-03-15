@@ -1,23 +1,23 @@
 {
-    "name": "vx/ip-field-bundle",
+    "name": "ev/ip-field-bundle",
     "type": "symfony-bundle",
-    "description": "Ip form type for symfony 2 forms",
-    "keywords": ["ip", "form", "field", "type", "symfony", "symfony bundle", "bundle", "symfony-2"],
-    "homepage": "https://github.com/Vixys/VxIpFieldTypeBundle",
+    "description": "Ip form type for symfony 3 forms",
+    "keywords": ["ip", "form", "field", "type", "symfony", "symfony bundle", "bundle", "symfony-3"],
+    "homepage": "https://github.com/evotodi/EvIpFieldTypeBundle",
     "license": "MIT",
     "authors": [
         {
-            "name": "Sébastien Marichal",
-            "email": "sebmarichal@gmail.com"
+            "name": "Justin Davis",
+            "email": "evotodi@gmail.com"
         }
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/framework-bundle": "2.*"
+        "symfony/framework-bundle": "3.*"
     },
     "autoload": {
-        "psr-0": { "Vx\\IpFieldTypeBundle": "" }
+        "psr-0": { "Ev\\IpFieldTypeBundle": "" }
     },
-    "target-dir": "Vx/IpFieldTypeBundle",
+    "target-dir": "Ev/IpFieldTypeBundle",
     "minimum-stability": "dev"
 }

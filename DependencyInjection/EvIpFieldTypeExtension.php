@@ -1,6 +1,6 @@
 <?php
 
-namespace Vx\IpFieldTypeBundle\DependencyInjection;
+namespace Ev\IpFieldTypeBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class VxIpFieldTypeExtension extends Extension
+class EvIpFieldTypeExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -31,7 +31,7 @@ class VxIpFieldTypeExtension extends Extension
 
             $container->setParameter(
                 'twig.form.resources',
-                array_merge($twigFormResources, array('VxIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
+                array_merge($twigFormResources, array('EvIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
             );
         }
         $this->registerResources($container);
@@ -57,7 +57,7 @@ class VxIpFieldTypeExtension extends Extension
 
         //     $container->setParameter(
         //         'templating.helper.form.resources',
-        //         array_merge($phpFormResources, array('VxIpFieldTypeBundle:Form'))
+        //         array_merge($phpFormResources, array('EvIpFieldTypeBundle:Form'))
         //     );
         // }
 
@@ -68,7 +68,7 @@ class VxIpFieldTypeExtension extends Extension
 
             $container->setParameter(
                 'twig.form.resources',
-                array_merge($twigFormResources, array('VxIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
+                array_merge($twigFormResources, array('EvIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
             );
         }
     }
