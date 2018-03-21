@@ -34,7 +34,7 @@ class IpType extends AbstractType
 	            'ip_conf'          => array('version' => 4,
 					    				   'max_value' => 255,
 					    				   'group' => 4,
-					    				   'group_length' => 6,
+					    				   'group_length' => 7,
 					    				   'sep' => '.',
 					    				   'base' => 10, )
 	        ));
@@ -43,7 +43,7 @@ class IpType extends AbstractType
                 'ip_conf'          => array('version' => 6,
                                            'max_value' => 0xffff,
                                            'group' => 8,
-                                           'group_length' => 3,
+                                           'group_length' =>7,
                                            'sep' => ':',
                                            'base' => 16, )
             ));
@@ -52,7 +52,7 @@ class IpType extends AbstractType
                 'ip_conf'          => array('version' => 'mac',
                                            'max_value' => 0xff,
                                            'group' => 6,
-                                           'group_length' => 3,
+                                           'group_length' => 5,
                                            'sep' => ':',
                                            'base' => 16, )
             ));
