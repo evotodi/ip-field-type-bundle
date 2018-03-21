@@ -1,6 +1,6 @@
 <?php
 
-namespace Ev\IpFieldTypeBundle\DependencyInjection;
+namespace Evotodi\IpFieldTypeBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('ev_ip_field_type');
+        $rootNode = $treeBuilder->root('evotodi_ip_field_type');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

@@ -1,5 +1,5 @@
 {
-    "name": "ev/ip-field-bundle",
+    "name": "evotodi/ip-field-bundle",
     "type": "symfony-bundle",
     "description": "Ip form type for symfony 3 forms",
     "keywords": ["ip", "form", "field", "type", "symfony", "symfony bundle", "bundle", "symfony-3"],
@@ -17,8 +17,8 @@
         "symfony/form": "3.*"
     },
     "autoload": {
-        "psr-0": { "Ev\\IpFieldTypeBundle": "" }
+        "psr-0": { "Evotodi\\IpFieldTypeBundle": "" }
     },
-    "target-dir": "Ev/IpFieldTypeBundle",
+    "target-dir": "Evotodi/IpFieldTypeBundle",
     "minimum-stability": "dev"
 }

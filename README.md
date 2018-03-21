@@ -14,12 +14,12 @@ Requirements
 
 ### Composer
 
-Add EvJsUploadBundle in your composer.json:
+Add evotodi/ip-field-bundle in your composer.json:
 
 ``` json
 {
     "require": {
-        "ev/ip-field-bundle": "dev-master"
+        "evotodi/ip-field-bundle": "dev-master"
     }
 }
 ```
@@ -27,7 +27,7 @@ Add EvJsUploadBundle in your composer.json:
 Now you can download the bundle with composer:
 
 ``` bash
-$ php composer.phar update ev/ip-field-bundle
+$ php composer.phar update evotodi/ip-field-bundle
 ```
 
 ### AppKernel
@@ -42,7 +42,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Ev\IpFieldTypeBundle\EvIpFieldTypeBundle(),
+        new Evotodi\IpFieldTypeBundle\EvotodiIpFieldTypeBundle(),
     );
 }
 ```

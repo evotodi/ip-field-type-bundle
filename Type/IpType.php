@@ -1,6 +1,6 @@
 <?php 
 
-namespace Ev\IpFieldTypeBundle\Type;
+namespace Evotodi\IpFieldTypeBundle\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

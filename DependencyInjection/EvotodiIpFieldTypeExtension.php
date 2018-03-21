@@ -1,6 +1,6 @@
 <?php
 
-namespace Ev\IpFieldTypeBundle\DependencyInjection;
+namespace Evotodi\IpFieldTypeBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class EvIpFieldTypeExtension extends Extension
+class EvotodiIpFieldTypeExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -31,7 +31,7 @@ class EvIpFieldTypeExtension extends Extension
 
             $container->setParameter(
                 'twig.form.resources',
-                array_merge($twigFormResources, array('EvIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
+                array_merge($twigFormResources, array('EvotodiIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
             );
         }
         $this->registerResources($container);
@@ -68,7 +68,7 @@ class EvIpFieldTypeExtension extends Extension
 
             $container->setParameter(
                 'twig.form.resources',
-                array_merge($twigFormResources, array('EvIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
+                array_merge($twigFormResources, array('EvotodiIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
             );
         }
     }
