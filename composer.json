@@ -1,5 +1,5 @@
 {
-    "name": "evotodi/ip-field-bundle-3",
+    "name": "evotodi/ip-field-symfony3-bundle",
     "type": "symfony-bundle",
     "description": "Ip form type for symfony 3 forms",
     "keywords": ["ip", "form", "field", "type", "symfony", "symfony bundle", "bundle", "symfony-3"],

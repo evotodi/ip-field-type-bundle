@@ -1,4 +1,4 @@
-EvIpFieldTypeBundle
+Ip Field Type Symfony 3 Bundle 
 ===================
 
 Provide an ip field for symfony 3 forms.
@@ -19,7 +19,7 @@ Add evotodi/ip-field-bundle in your composer.json:
 ``` json
 {
     "require": {
-        "evotodi/ip-field-bundle": "dev-master"
+        "evotodi/ip-field-symfony3-bundle": "dev-master"
     }
 }
 ```
@@ -27,7 +27,7 @@ Add evotodi/ip-field-bundle in your composer.json:
 Now you can download the bundle with composer:
 
 ``` bash
-$ php composer.phar update evotodi/ip-field-bundle
+$ php composer.phar update evotodi/ip-field-symfony3-bundle
 ```
 
 ### AppKernel
