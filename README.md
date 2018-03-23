@@ -19,7 +19,7 @@ Add evotodi/ip-field-symfony3-bundle in your composer.json:
 ``` json
 {
     "require": {
-        "evotodi/ip-field-symfony3-bundle": "dev-master"
+        "evotodi/ip-field-symfony3-bundle": "^1.0"
     }
 }
 ```
