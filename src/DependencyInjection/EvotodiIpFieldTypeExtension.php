@@ -36,7 +36,7 @@ class EvotodiIpFieldTypeExtension extends Extension
         }
         $this->registerResources($container);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
     }
 
