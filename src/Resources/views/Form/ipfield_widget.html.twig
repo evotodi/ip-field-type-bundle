@@ -8,17 +8,26 @@
 		<div id="div_field_{{ id }}">
 			{% for i in 0..ip_conf['group'] - 1%}
 				{% if i != 0 %}{{ ip_conf['sep'] }}{% endif %}
-				<input id="{{ id ~ i }}" data-parent="{{ id }}" oninput="ip_check_input_{{ id_func }}(this, {{ i }})" onchange="ip_valid_input_{{ id_func }}(this.value, {{ i }})" maxlength="{{ ip_conf['group_length'] }}" style="width: {{ ip_conf['group_length'] * 10 }}px; padding: 0px; margin: 0px; border-style: solid; text-align: center;" autocomplete="off" {% if ip_conf['version'] == 4 %}required{% endif %}></input>
+				<input id="{{ id ~ i }}" data-parent="{{ id }}" onkeydown="onKeyPress_{{ id_func }}({{ i }}, event)" oninput="ip_check_input_{{ id_func }}(this, {{ i }})" onchange="ip_valid_input_{{ id_func }}(this.value, {{ i }})" maxlength="{{ ip_conf['group_length'] }}" style="width: {{ ip_conf['group_length'] * 10 }}px; padding: 0px; margin: 0px; border-style: solid; text-align: center;" autocomplete="off" {% if ip_conf['version'] == 4 %}required{% endif %}></input>
 			{% endfor %}
 
 			<script type="text/javascript">
+
+				function onKeyPress_{{ id_func }}(idx, event)
+				{
+					if (event.keyCode == 39  && idx < {{ ip_conf['chars_max'] }})
+						document.getElementById("{{ id }}" + (idx + 1)).focus();
+					if (event.keyCode == 37  && idx > 0)
+						document.getElementById("{{ id }}" + (idx - 1)).focus();
+					return true;
+				}
 
 				function ip_check_input_{{ id_func }} (input, idx) {
 
 					if (input.length == 0)
 						return ;
 
-					if (input.value.slice(-1) == "{{ ip_conf['sep'] }}"  && idx < 3)
+					if (input.value.slice(-1) == "{{ ip_conf['sep'] }}"  && idx < {{ ip_conf['chars_max'] }})
 						document.getElementById("{{ id }}" + (idx + 1)).focus();
 
 					var value = parseInt(input.value, {{ ip_conf['base'] }});
@@ -42,12 +51,10 @@
 				}
 
 				function ip_valid_input_{{ id_func }} (digit, idx) {
+					digit = digit.replace(/[:\.]/g,"");
 					var hidden = document.getElementById("{{ id }}");
-
 					var split_ip = hidden.value.split("{{ ip_conf['sep'] }}");
-
 					split_ip[idx] = digit.toString({{ ip_conf['base'] }});
-
 					hidden.value = split_ip.join("{{ ip_conf['sep'] }}");
 				}
 			</script>

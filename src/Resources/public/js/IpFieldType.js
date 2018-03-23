@@ -65,8 +65,8 @@ function onCopy(e)
 }
 
 function init() {
-	var inps = document.querySelectorAll('input[name^="{{ fname }}"][data-ip_conf]');
-
+	var inps = document.querySelectorAll('input[data-ip_conf]');
+	console.log(inps);
 	inps.forEach(function (value, index) {
 		var ip_conf = JSON.parse(value.dataset['ip_conf']);
 
