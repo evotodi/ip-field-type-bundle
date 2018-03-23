@@ -4,127 +4,14 @@
 			{% set id = form.vars.id %}
 		{% endif %}
 		{% set id_func = id|replace({'-': "_", '*': '_', '/': '_', '+': '_'}) %}
+		{% set fname = form.vars.full_name|split('[')[0] %}
 		<div id="div_field_{{ id }}">
 			{% for i in 0..ip_conf['group'] - 1%}
 				{% if i != 0 %}{{ ip_conf['sep'] }}{% endif %}
-				<input id="{{ id ~ i }}" onkeydown="onKeyPress({{ i }})" oninput="ip_check_input_{{ id_func }}(this, {{ i }})" onchange="ip_valid_input_{{ id_func }}(this.value, {{ i }})" maxlength="{{ ip_conf['group_length'] }}" style="width: {{ ip_conf['group_length'] * 10 }}px; padding: 0px; margin: 0px; border-style: solid; text-align: center;" autocomplete="off" {% if ip_conf['version'] == 4 %}required{% endif %}></input>
+				<input id="{{ id ~ i }}" data-parent="{{ id }}" oninput="ip_check_input_{{ id_func }}(this, {{ i }})" onchange="ip_valid_input_{{ id_func }}(this.value, {{ i }})" maxlength="{{ ip_conf['group_length'] }}" style="width: {{ ip_conf['group_length'] * 10 }}px; padding: 0px; margin: 0px; border-style: solid; text-align: center;" autocomplete="off" {% if ip_conf['version'] == 4 %}required{% endif %}></input>
 			{% endfor %}
-			
+
 			<script type="text/javascript">
-
-				function isValid(ipaddress) 
-				{
-					var split_val = ipaddress.split("{{ ip_conf['sep'] }}");
-
-					if (split_val.length != {{ ip_conf['group'] }})
-						return false;
-
-					for (var i = split_val.length - 1; i >= 0; i--) {
-						var num = parseInt(split_val[i], {{ ip_conf['base'] }});
-
-						if (isNaN(num))
-							return false;
-						if (num < 0 || num > {{ ip_conf['max_value'] }})
-							return false;
-					};
-
-					return true;
-				}
-
-				function onPaste(e)
-				{
-					var pastedText = undefined;
-					if (window.clipboardData && window.clipboardData.getData) { // IE
-						pastedText = window.clipboardData.getData('Text');
-					} else if (e.clipboardData && e.clipboardData.getData) {
-						pastedText = e.clipboardData.getData('text/plain');
-					}
-
-					if (isValid(pastedText))
-					{
-						var split_val = pastedText.split("{{ ip_conf['sep'] }}");
-
-						{% for i in 0..ip_conf['group'] - 1%}
-							var field{{ i }} = document.getElementById("{{ id ~ i }}");
-							field{{ i }}.value = split_val[{{ i }}];
-						{% endfor %}
-					}
-					else
-					{
-						alert('no valid');
-					}
-
-					return false;
-				}
-
-				function onCopy(e)
-				{
-					var ip = document.getElementById("{{ id }}").value;
-
-					if (isValid(ip))
-					{
-						if (window.clipboardData && window.clipboardData.setData) { // IE
-							window.clipboardData.setData('Text', ip);
-						} else if (e.clipboardData && e.clipboardData.setData) {
-							e.clipboardData.setData('text/plain', ip);
-						}
-						return false;
-					}
-					return true;
-				}
-
-				function onKeyPress(idx)
-				{
-					if (window.event.keyCode == 39  && idx < 3)
-						document.getElementById("{{ id }}" + (idx + 1)).focus();
-					if (window.event.keyCode == 37  && idx > 0)
-						document.getElementById("{{ id }}" + (idx - 1)).focus();
-					return true;
-				}
-
-				function init() {
-					
-					var input_tmp = document.createElement("input");
-					{% if class is defined %}
-					input_tmp.className = "{{ class }}";
-					{% endif %}
-
-					var div_field = document.getElementById("div_field_{{ id }}");
-					var hidden = document.getElementById("{{ id }}");
-					div_field.appendChild(input_tmp);
-					div_field.style.cssText = window.getComputedStyle(input_tmp).cssText;
-					div_field.removeChild(input_tmp);
-					var width = parseInt(div_field.style.getPropertyCSSValue("padding-right").cssText) + parseInt(div_field.style.getPropertyCSSValue("padding-left").cssText)
-					width += parseInt(document.getElementById("{{ id }}0").style.width) * {{ ip_conf['group'] }} + {{ (ip_conf['group'] - 1) * 14 }};
-					div_field.style.width = width.toString() + "px";
-
-					{% for i in 0..ip_conf['group'] - 1%}
-					var field{{ i }} = document.getElementById("{{ id ~ i }}");
-					field{{ i }}.onpaste = onPaste;
-					field{{ i }}.oncopy = onCopy;
-					{% endfor %}
-
-					var split_ip = hidden.value.split("{{ ip_conf['sep'] }}");
-
-					if (split_ip.length != {{ ip_conf['group'] }})
-					{
-						hidden.value = "";								
-						for (var i = 0; i < {{ ip_conf['group'] - 1 }}; i++)
-						{
-							hidden.value += "{{ ip_conf['sep'] }}";								
-						};
-						return ;
-					}
-
-					{% for i in 0..ip_conf['group'] - 1%}
-					field{{ i }}.value = split_ip[{{ i }}];
-					{% endfor %}
-				}
-
-				if (document.readyState == "complete")
-					init();
-				else
-					window.onload = init;
 
 				function ip_check_input_{{ id_func }} (input, idx) {
 
@@ -143,7 +30,7 @@
 						value = 0;
 					else if (value > {{ ip_conf['max_value'] }})
 					{
-						value = {{ ip_conf['max_value'] }};							
+						value = {{ ip_conf['max_value'] }};
 						ip_valid_input_{{ id_func }}(value, idx);
 					}
 					input.value = value.toString({{ ip_conf['base'] }});
@@ -164,7 +51,7 @@
 					hidden.value = split_ip.join("{{ ip_conf['sep'] }}");
 				}
 			</script>
-		    {{ block('hidden_widget') }}
+			{{ block('hidden_widget') }}
 		</div>
 	{% endspaceless %}
 {% endblock %}

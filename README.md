@@ -75,15 +75,10 @@ You can specify the ip version (`ipv4`, `ipv6` or `mac`) :
 ### View
 
 ``` html
+{% form_theme form '@EvotodiIpFieldType/Form/ipfield_widget.html.twig' %}
 {{ form_start(form) }}
     {{ form_errors(form) }}
-
-	<div class="control-group">
-		<label class="control-label" for="ip">IP</label>
-		<div class="controls">
-			{{ form_widget(form.ip, { 'id': 'my_ip_field', 'class': 'form-control' }) }}
-		</div>
-	</div>
+		{{ form_widget(form.ip, { 'id': 'my_ip_field', 'class': 'form-control' }) }}
 	{{ form_rest(form) }}
 {{ form_end(form) }}
 ```
