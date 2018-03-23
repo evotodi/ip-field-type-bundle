@@ -81,6 +81,11 @@ You can specify the ip version (`ipv4`, `ipv6` or `mac`) :
 		{{ form_widget(form.ip, { 'id': 'my_ip_field', 'class': 'form-control' }) }}
 	{{ form_rest(form) }}
 {{ form_end(form) }}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('../vendor/evotodi/ip-field-symfony3-bundle/web/js/IpFieldType.js') }}"></script>
+{% endblock %}
 ```
 
 Licence

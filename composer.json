@@ -16,6 +16,8 @@
         "symfony/framework-bundle": "3.*",
         "symfony/form": "3.*"
     },
-    "autoload": {},
+    "autoload": {
+        "psr-0": { "Evotodi\\IpFieldTypeBundle": "" }
+    },
     "minimum-stability": "dev"
 }
