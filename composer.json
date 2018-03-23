@@ -19,5 +19,8 @@
     "autoload": {
         "psr-4": { "Evotodi\\IpFieldTypeBundle\\": "src/" }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "extra": {
+        "symfony-assets-install":"symlink"
+    }
 }
