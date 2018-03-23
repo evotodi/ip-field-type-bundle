@@ -36,7 +36,8 @@ class IpType extends AbstractType
 					'group' => 4,
 					'group_length' => 7,
 					'sep' => '.',
-					'base' => 10,)
+					'base' => 10,
+					'chars_max' => 3,)
 			];
 			$view->vars = array_replace($view->vars, $ipConf);
 			$view->vars['attr']['data-ip_conf'] = json_encode(array_map('utf8_encode', $ipConf['ip_conf']));
@@ -47,7 +48,8 @@ class IpType extends AbstractType
 					'group' => 8,
 					'group_length' => 7,
 					'sep' => ':',
-					'base' => 16,)
+					'base' => 16,
+					'chars_max' => 4,)
 			];
 			$view->vars = array_replace($view->vars, $ipConf);
 			$view->vars['attr']['data-ip_conf'] = json_encode(array_map('utf8_encode', $ipConf['ip_conf']));
@@ -58,7 +60,8 @@ class IpType extends AbstractType
 					'group' => 6,
 					'group_length' => 5,
 					'sep' => ':',
-					'base' => 16,)
+					'base' => 16,
+					'chars_max' => 2,)
 			];
 			$view->vars = array_replace($view->vars, $ipConf);
 			$view->vars['attr']['data-ip_conf'] = json_encode(array_map('utf8_encode', $ipConf['ip_conf']));

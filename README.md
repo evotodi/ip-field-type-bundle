@@ -14,7 +14,7 @@ Requirements
 
 ### Composer
 
-Add evotodi/ip-field-bundle in your composer.json:
+Add evotodi/ip-field-symfony3-bundle in your composer.json:
 
 ``` json
 {
@@ -84,7 +84,7 @@ You can specify the ip version (`ipv4`, `ipv6` or `mac`) :
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('../vendor/evotodi/ip-field-symfony3-bundle/web/js/IpFieldType.js') }}"></script>
+    <script src="{{ asset('bundles/evotodiipfieldtype/js/IpFieldType.js') }}"></script>
 {% endblock %}
 ```
 

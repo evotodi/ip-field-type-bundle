@@ -35,7 +35,7 @@
 					}
 					input.value = value.toString({{ ip_conf['base'] }});
 
-					if (input.value.length == 3 && idx < 3)
+					if (input.value.length == {{ ip_conf['chars_max'] }} && idx < {{ ip_conf['group'] }})
 					{
 						document.getElementById("{{ id }}" + (idx + 1)).focus();
 					}
