@@ -51,7 +51,6 @@ function onCopy(e)
 {
 
 	var ip = document.getElementById(e['target'].dataset['parent']).value;
-	console.log(ip);
 	if (isValid(ip, e['target'].dataset['parent']))
 	{
 		if (window.clipboardData && window.clipboardData.setData) { // IE
@@ -66,12 +65,10 @@ function onCopy(e)
 
 function init() {
 	var inps = document.querySelectorAll('input[data-ip_conf]');
-	console.log(inps);
 	inps.forEach(function (value, index) {
 		var ip_conf = JSON.parse(value.dataset['ip_conf']);
 
 		var hidden = document.getElementById(value['id']);
-		console.log(hidden);
 
 		for (i = 0; i < ip_conf['group']; i++){
 			var field = document.getElementById(value['id']+i);
@@ -80,7 +77,6 @@ function init() {
 		}
 
 		var split_ip = hidden.value.split(ip_conf['sep']);
-		console.log(split_ip);
 
 		if (split_ip.length != ip_conf['group'])
 		{
