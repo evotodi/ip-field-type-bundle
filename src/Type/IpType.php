@@ -13,9 +13,10 @@ class IpType extends AbstractType
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		parent::configureOptions($resolver);
-		$resolver->setDefined(array('version'));
+		$resolver->setDefined(array('version', 'readonly'));
 		$resolver->setDefaults(array(
 			'version' => 'ipv4',
+			'readonly' => false
 		));
 	}
 
@@ -70,6 +71,7 @@ class IpType extends AbstractType
 				'ip_conf'          => $options['version']
 			));
 		}
+		$view->vars = array_replace($view->vars, array('readonly' => $options['readonly']));
 	}
 
 	/**
