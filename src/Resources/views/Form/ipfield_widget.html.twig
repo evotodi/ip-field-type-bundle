@@ -12,7 +12,7 @@
 		<div id="div_field_{{ id }}">
 			{% for i in 0..ip_conf['group'] - 1%}
 				{% if i != 0 %}{{ ip_conf['sep'] }}{% endif %}
-				<input id="{{ id ~ i }}" class="{{ cls }}" data-parent="{{ id }}" onkeydown="onKeyPress_{{ id_func }}({{ i }}, event)" oninput="ip_check_input_{{ id_func }}(this, {{ i }})" onchange="ip_valid_input_{{ id_func }}(this.value, {{ i }})" maxlength="{{ ip_conf['group_length'] }}" style="width: {{ ip_conf['group_length'] * 10 }}px; padding: 0px; margin: 0px; border-style: solid; text-align: center;" autocomplete="off" {% if ip_conf['version'] == 4 %}required{% endif %} {% if disabled %}disabled{% endif %}></input>
+				<input id="{{ id ~ i }}" class="{{ cls }}" data-parent="{{ id }}" onkeydown="onKeyPress_{{ id_func }}({{ i }}, event)" oninput="ip_check_input_{{ id_func }}(this, {{ i }})" onchange="ip_valid_input_{{ id_func }}(this.value, {{ i }})" maxlength="{{ ip_conf['group_length'] }}" style="width: {{ ip_conf['group_length'] * 10 }}px; padding: 0px; margin: 0px; border-style: solid; text-align: center;" autocomplete="off" {% if ip_conf['version'] == 4 %}required{% endif %} {% if disabled %}disabled{% endif %} {% if readonly %}readonly{% endif %}></input>
 			{% endfor %}
 
 			<script type="text/javascript">

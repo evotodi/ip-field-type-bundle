@@ -79,7 +79,8 @@ You can specify the ip version (`ipv4`, `ipv6` or `mac`) :
 {{ form_start(form) }}
     {{ form_errors(form) }}
 		{{ form_widget(form.ip, { 'id': 'my_ip_field', 'class': 'form-control' }) }}
-		{{ form_widget(form.ip, { 'id': 'my_mac_field', 'disabled': 'true' }) }}
+		{{ form_widget(form.mac, { 'id': 'my_mac_field', 'disabled': 'true' }) }}
+		{{ form_widget(form.gw, { 'id': 'my_gw_field', 'readonly': 'true' }) }}
 	{{ form_rest(form) }}
 {{ form_end(form) }}
 
