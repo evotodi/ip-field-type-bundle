@@ -1,25 +1,25 @@
-Ip Field Type Symfony 3 Bundle 
+Ip Field Type Symfony Bundle 
 ===================
 
-Provide an ip field for symfony 3 forms.
+Provide an ip field for symfony forms.
 
 Fork of https://github.com/Vixys/VxIpFieldTypeBundle
 
 Requirements
 ------------
 
-* Symfony 3.*
+* Symfony 3.* | Symfony 4.*
 
 ## Installation
 
 ### Composer
 
-Add evotodi/ip-field-symfony3-bundle in your composer.json:
+Add evotodi/ip-field-type-bundle in your composer.json:
 
 ``` json
 {
     "require": {
-        "evotodi/ip-field-symfony3-bundle": "^1.0.*"
+        "evotodi/ip-field-type-bundle": "^1.0.*"
     }
 }
 ```
@@ -27,7 +27,7 @@ Add evotodi/ip-field-symfony3-bundle in your composer.json:
 Now you can download the bundle with composer:
 
 ``` bash
-$ php composer.phar update evotodi/ip-field-symfony3-bundle
+$ php composer.phar update evotodi/ip-field-type-bundle
 ```
 
 ### AppKernel

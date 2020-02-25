@@ -1,8 +1,8 @@
 {
-    "name": "evotodi/ip-field-symfony3-bundle",
+    "name": "evotodi/ip-field-type-bundle",
     "type": "symfony-bundle",
-    "description": "Ip form type for symfony 3 forms",
-    "keywords": ["ip", "form", "field", "type", "symfony", "symfony bundle", "bundle", "symfony-3"],
+    "description": "Ip form type for symfony forms",
+    "keywords": ["ip", "form", "field", "type", "symfony", "symfony bundle", "bundle", "symfony-3", "symfony-4"],
     "homepage": "https://github.com/evotodi/EvIpFieldTypeBundle",
     "license": "MIT",
     "authors": [
