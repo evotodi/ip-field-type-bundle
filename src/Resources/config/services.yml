@@ -3,6 +3,6 @@ parameters:
 
 services:
     evotodi.ipfield.form.type:
-        class: %evotodi_ip_field.form.class%
+        class: '%evotodi_ip_field.form.class%'
         tags:
             - { name: form.type, alias: ipfield }
