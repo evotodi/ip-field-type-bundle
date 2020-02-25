@@ -30,7 +30,7 @@ class EvotodiIpFieldTypeExtension extends Extension
 
         $container->setParameter(
             'twig.form.resources',
-            array_merge($twigFormResources, array('EvotodiIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
+            array_merge($twigFormResources, array('@EvotodiIpFieldType/Form/ipfield_widget.html.twig'))
         );
 
         $this->registerResources($container);
@@ -52,7 +52,7 @@ class EvotodiIpFieldTypeExtension extends Extension
 
         $container->setParameter(
             'twig.form.resources',
-            array_merge($twigFormResources, array('EvotodiIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
+            array_merge($twigFormResources, array('@EvotodiIpFieldType/Form/ipfield_widget.html.twig'))
         );
 
     }
