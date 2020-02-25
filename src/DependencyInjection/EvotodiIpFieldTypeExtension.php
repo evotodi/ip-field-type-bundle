@@ -24,18 +24,15 @@ class EvotodiIpFieldTypeExtension extends Extension
         $configuration = new Configuration();
         $this->processConfiguration($configuration, $configs);
 
-        $templatingEngines = $container->getParameter('templating.engines');
+        $twigFormResources = $container->hasParameter('twig.form.resources')
+            ? $container->getParameter('twig.form.resources')
+            : array();
 
-        if (in_array('twig', $templatingEngines)) {
-            $twigFormResources = $container->hasParameter('twig.form.resources')
-                ? $container->getParameter('twig.form.resources')
-                : array();
+        $container->setParameter(
+            'twig.form.resources',
+            array_merge($twigFormResources, array('EvotodiIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
+        );
 
-            $container->setParameter(
-                'twig.form.resources',
-                array_merge($twigFormResources, array('EvotodiIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
-            );
-        }
         $this->registerResources($container);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
@@ -43,35 +40,20 @@ class EvotodiIpFieldTypeExtension extends Extension
     }
 
      /**
-     * Registers the form resources for the PHP & Twig templating engines.
+     * Registers the form resources for the Twig templating engines.
      *
      * @param ContainerBuilder $container The container.
      */
     protected function registerResources(ContainerBuilder $container)
     {
-        $templatingEngines = $container->getParameter('templating.engines');
+        $twigFormResources = $container->hasParameter('twig.form.resources')
+            ? $container->getParameter('twig.form.resources')
+            : array();
 
-        // TODO: Php template
-        // if (in_array('php', $templatingEngines)) {
-        //     $phpFormResources = $container->hasParameter('templating.helper.form.resources')
-        //         ? $container->getParameter('templating.helper.form.resources')
-        //         : array();
+        $container->setParameter(
+            'twig.form.resources',
+            array_merge($twigFormResources, array('EvotodiIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
+        );
 
-        //     $container->setParameter(
-        //         'templating.helper.form.resources',
-        //         array_merge($phpFormResources, array('EvIpFieldTypeBundle:Form'))
-        //     );
-        // }
-
-        if (in_array('twig', $templatingEngines)) {
-            $twigFormResources = $container->hasParameter('twig.form.resources')
-                ? $container->getParameter('twig.form.resources')
-                : array();
-
-            $container->setParameter(
-                'twig.form.resources',
-                array_merge($twigFormResources, array('EvotodiIpFieldTypeBundle:Form:ipfield_widget.html.twig'))
-            );
-        }
     }
 }
