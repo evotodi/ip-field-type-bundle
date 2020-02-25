@@ -2,6 +2,7 @@
 
 namespace Evotodi\IpFieldTypeBundle\DependencyInjection;
 
+use Exception;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -14,13 +15,14 @@ use Symfony\Component\DependencyInjection\Loader;
  */
 class EvotodiIpFieldTypeExtension extends Extension
 {
-    /**
-     * {@inheritDoc}
-     */
+	/**
+	 * {@inheritDoc}
+	 * @throws Exception
+	 */
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $this->processConfiguration($configuration, $configs);
 
         $templatingEngines = $container->getParameter('templating.engines');
 
@@ -43,7 +45,7 @@ class EvotodiIpFieldTypeExtension extends Extension
      /**
      * Registers the form resources for the PHP & Twig templating engines.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container The container.
+     * @param ContainerBuilder $container The container.
      */
     protected function registerResources(ContainerBuilder $container)
     {

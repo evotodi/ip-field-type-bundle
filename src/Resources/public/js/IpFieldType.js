@@ -1,13 +1,13 @@
 function isValid(ipaddress, parent_id)
 {
-	var ip_conf = JSON.parse(document.getElementById(parent_id).dataset['ip_conf']);
-	var split_val = ipaddress.split(ip_conf['sep']);
-	if (split_val.length != ip_conf['group']) {
+	let ip_conf = JSON.parse(document.getElementById(parent_id).dataset['ip_conf']);
+	let split_val = ipaddress.split(ip_conf['sep']);
+	if (split_val.length !== ip_conf['group']) {
 		return false;
 	}
 
-	for (var i = split_val.length - 1; i >= 0; i--) {
-		var num = parseInt(split_val[i], ip_conf['base']);
+	for (let i = split_val.length - 1; i >= 0; i--) {
+		let num = parseInt(split_val[i], ip_conf['base']);
 
 		if (isNaN(num)){
 			return false;
@@ -21,9 +21,9 @@ function isValid(ipaddress, parent_id)
 
 function onPaste(e)
 {
-	var parent = document.getElementById(e['target'].dataset['parent']);
-	var ip_conf = JSON.parse(parent.dataset['ip_conf']);
-	var pastedText = undefined;
+	let parent = document.getElementById(e['target'].dataset['parent']);
+	let ip_conf = JSON.parse(parent.dataset['ip_conf']);
+	let pastedText = undefined;
 	if (window.clipboardData && window.clipboardData.getData) { // IE
 		pastedText = window.clipboardData.getData('Text');
 	} else if (e.clipboardData && e.clipboardData.getData) {
@@ -32,10 +32,10 @@ function onPaste(e)
 
 	if (isValid(pastedText, e['target'].dataset['parent']))
 	{
-		var split_val = pastedText.split(ip_conf['sep']);
+		let split_val = pastedText.split(ip_conf['sep']);
 
 		for (i = 0; i < ip_conf['group']; i++){
-			var field = document.getElementById(e['target'].dataset['parent']+i);
+			let field = document.getElementById(e['target'].dataset['parent']+i);
 			field.value = split_val[i];
 		}
 	}
@@ -64,24 +64,26 @@ function onCopy(e)
 }
 
 function init() {
-	var inps = document.querySelectorAll('input[data-ip_conf]');
+	let inps = document.querySelectorAll('input[data-ip_conf]');
 	inps.forEach(function (value, index) {
-		var ip_conf = JSON.parse(value.dataset['ip_conf']);
+		let field;
+		let i;
+		let ip_conf = JSON.parse(value.dataset['ip_conf']);
 
-		var hidden = document.getElementById(value['id']);
+		let hidden = document.getElementById(value['id']);
 
 		for (i = 0; i < ip_conf['group']; i++){
-			var field = document.getElementById(value['id']+i);
+			field = document.getElementById(value['id'] + i);
 			field.onpaste = onPaste;
 			field.oncopy = onCopy;
 		}
 
-		var split_ip = hidden.value.split(ip_conf['sep']);
+		let split_ip = hidden.value.split(ip_conf['sep']);
 
-		if (split_ip.length != ip_conf['group'])
+		if (split_ip.length !== ip_conf['group'])
 		{
 			hidden.value = "";
-			for (var i = 0; i < ip_conf['group'] - 1; i++)
+			for (i = 0; i < ip_conf['group'] - 1; i++)
 			{
 				hidden.value += ip_conf['sep'];
 			}
@@ -89,14 +91,14 @@ function init() {
 		}
 
 		for (i = 0; i < ip_conf['group']; i++){
-			var field = document.getElementById(value['id']+i);
+			field = document.getElementById(value['id']+i);
 			field.value = split_ip[i];
 		}
 	})
 
 }
 
-if (document.readyState == "complete") {
+if (document.readyState === "complete") {
 	init();
 }else {
 	window.onload = init;
