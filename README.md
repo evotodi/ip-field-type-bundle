@@ -8,43 +8,14 @@ Fork of https://github.com/Vixys/VxIpFieldTypeBundle
 Requirements
 ------------
 
-* Symfony 3.* | Symfony 4.*
+* Symfony 4.*
 
 ## Installation
 
 ### Composer
 
-Add evotodi/ip-field-type-bundle in your composer.json:
-
 ``` json
-{
-    "require": {
-        "evotodi/ip-field-type-bundle": "^1.0.*"
-    }
-}
-```
-
-Now you can download the bundle with composer:
-
-``` bash
-$ php composer.phar update evotodi/ip-field-type-bundle
-```
-
-### AppKernel
-
-Enable the bundle in the kernel:
-
-``` php
-<?php
-// app/AppKernel.php
-
-public function registerBundles()
-{
-    $bundles = array(
-        // ...
-        new Evotodi\IpFieldTypeBundle\EvotodiIpFieldTypeBundle(),
-    );
-}
+composer require evotodi/ip-field-type-bundle
 ```
 
 ## Usage

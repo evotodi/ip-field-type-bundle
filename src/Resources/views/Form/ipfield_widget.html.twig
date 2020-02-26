@@ -1,5 +1,5 @@
 {% block ip_widget %}
-	{% spaceless %}
+	{% apply spaceless %}
 		{% if id is not defined %}
 			{% set id = form.vars.id %}
 		{% endif %}
@@ -16,8 +16,8 @@
 				       onkeydown="onKeyPress_{{ id_func }}({{ i }}, event)"
 				       oninput="ip_check_input_{{ id_func }}(this, {{ i }})"
 				       onchange="ip_valid_input_{{ id_func }}(this.value, {{ i }})"
-				       maxlength="{{ ip_conf['group_length'] }}"
-				       style="width: {{ ip_conf['group_length'] * 10 }}px; padding: 0px; margin: 0px; border-style: solid; text-align: center;"
+				       maxlength="{{ ip_conf['chars_max'] + 1 }}"
+				       style="width: {{ ip_conf['group_length'] * 10 }}px; padding: 0; margin: 0; border-style: solid; text-align: center;"
 				       autocomplete="off" {% if ip_conf['version'] == 4 %}required{% endif %}
 						{% if disabled %}disabled{% endif %} {% if readonly %}readonly{% endif %}/>
 			{% endfor %}
@@ -26,50 +26,50 @@
 
 				function onKeyPress_{{ id_func }}(idx, event)
 				{
-					if (event.keyCode === 39  && idx < {{ ip_conf['chars_max'] }})
+					if (event.keyCode === 39  && idx < {{ ip_conf['chars_max'] }}) {
 						document.getElementById("{{ id }}" + (idx + 1)).focus();
-					if (event.keyCode === 37  && idx > 0)
+					}
+					if (event.keyCode === 37  && idx > 0) {
 						document.getElementById("{{ id }}" + (idx - 1)).focus();
+					}
 					return true;
 				}
 
 				function ip_check_input_{{ id_func }} (input, idx) {
 
-					if (input.length === 0)
+					if (input.length === 0){
 						return ;
+					}
 
-					if (input.value.slice(-1) === "{{ ip_conf['sep'] }}"  && idx < {{ ip_conf['chars_max'] }})
+					if (input.value.slice(-1) === "{{ ip_conf['sep'] }}"  && idx < {{ ip_conf['chars_max'] }}) {
 						document.getElementById("{{ id }}" + (idx + 1)).focus();
+					}
 
-					var value = parseInt(input.value, {{ ip_conf['base'] }});
+					let value = parseInt(input.value, {{ ip_conf['base'] }});
 
-					if (isNaN(value))
+					if (isNaN(value)) {
 						value = "";
-
-					if (value < 0)
+					}
+					if (value < 0) {
 						value = 0;
-					else if (value > {{ ip_conf['max_value'] }})
-					{
+					}
+					else if (value > {{ ip_conf['max_value'] }}){
 						value = {{ ip_conf['max_value'] }};
 						ip_valid_input_{{ id_func }}(value, idx);
 					}
-					input.value = value.toString({{ ip_conf['base'] }});
 
-					if (input.value.length === {{ ip_conf['chars_max'] }} && idx < {{ ip_conf['group'] }})
-					{
-						document.getElementById("{{ id }}" + (idx + 1)).focus();
-					}
+					input.value = value.toString({{ ip_conf['base'] }});
 				}
 
 				function ip_valid_input_{{ id_func }} (digit, idx) {
 					digit = digit.replace(/[:\.]/g,"");
-					var hidden = document.getElementById("{{ id }}");
-					var split_ip = hidden.value.split("{{ ip_conf['sep'] }}");
+					let hidden = document.getElementById("{{ id }}");
+					let split_ip = hidden.value.split("{{ ip_conf['sep'] }}");
 					split_ip[idx] = digit.toString({{ ip_conf['base'] }});
 					hidden.value = split_ip.join("{{ ip_conf['sep'] }}");
 				}
 			</script>
 			{{ block('hidden_widget') }}
 		</div>
-	{% endspaceless %}
+	{% endapply %}
 {% endblock %}
