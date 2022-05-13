@@ -1,8 +1,5 @@
-parameters:
-    evotodi_ip_field.form.class: Evotodi\IpFieldTypeBundle\Type\IpType
-
 services:
     evotodi.ipfield.form.type:
-        class: '%evotodi_ip_field.form.class%'
+        class: 'Evotodi\IpFieldTypeBundle\Type\IpType'
         tags:
             - { name: form.type, alias: ipfield }

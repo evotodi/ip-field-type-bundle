@@ -1,15 +1,15 @@
-# Bootstrap
-app/bootstrap*
+/vendor/
 
-# Symfony directories
-vendor/*
-*/logs/*
-*/cache/*
-src/Resources/public/uploads/*
-src/Resources/public/bundles/*
+composer\.lock
 
-# Configuration files
-app/config/parameters.ini
-app/config/parameters.yml
-/.idea
-/composer.lock
+bin/
+
+build/logs/
+/tests/Controller/cache/
+/tests/cache/
+/config/
+.idea/
+var/
+/tests/App/cache/
+/tests/App/App/config.yml
+/.phpunit.result.cache
